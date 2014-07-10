@@ -1,4 +1,4 @@
 blog
 ====
 
-blogs for recording learing
+https://github.com/KevinFan/blog/wiki
