@@ -1,0 +1,574 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="ghpages,github pages,hexo,tutorial," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="曾经的故事最近又想搞搞博客了，之前使用过 Hexo，印象不错，但是唯一有一个问题就是我当时是使用hexo d来把hexo g生成的public目录下的内容放到github 上的，后来因为换电脑等等原因，源文件已经找不到了。
+有时候也很笨因此，觉得这个东西不好用，hexo d只是部署生成的表态文件到 github，而不会把源文件也放到 github，这样如果我换电脑或者使用其它电脑时就很不方便，我还">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo + Github Pages = 你的博客">
+<meta property="og:url" content="http://kevinjom.github.io/2016/04/13/hexo-plus-ghpages/index.html">
+<meta property="og:site_name" content="KevinFan's BLOG">
+<meta property="og:description" content="曾经的故事最近又想搞搞博客了，之前使用过 Hexo，印象不错，但是唯一有一个问题就是我当时是使用hexo d来把hexo g生成的public目录下的内容放到github 上的，后来因为换电脑等等原因，源文件已经找不到了。
+有时候也很笨因此，觉得这个东西不好用，hexo d只是部署生成的表态文件到 github，而不会把源文件也放到 github，这样如果我换电脑或者使用其它电脑时就很不方便，我还">
+<meta property="og:updated_time" content="2016-04-13T16:14:31.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo + Github Pages = 你的博客">
+<meta name="twitter:description" content="曾经的故事最近又想搞搞博客了，之前使用过 Hexo，印象不错，但是唯一有一个问题就是我当时是使用hexo d来把hexo g生成的public目录下的内容放到github 上的，后来因为换电脑等等原因，源文件已经找不到了。
+有时候也很笨因此，觉得这个东西不好用，hexo d只是部署生成的表态文件到 github，而不会把源文件也放到 github，这样如果我换电脑或者使用其它电脑时就很不方便，我还">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> Hexo + Github Pages = 你的博客 | KevinFan's BLOG </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">KevinFan's BLOG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I love freedom for no reason</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Hexo + Github Pages = 你的博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-04-13T23:28:37+08:00" content="2016-04-13">
+              2016-04-13
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="曾经的故事"><a href="#曾经的故事" class="headerlink" title="曾经的故事"></a>曾经的故事</h3><p>最近又想搞搞博客了，之前使用过 <code>Hexo</code>，印象不错，但是唯一有一个问题就是我当时是使用<code>hexo d</code>来把<code>hexo g</code>生成的<code>public</code>目录下的内容放到github 上的，后来因为换电脑等等原因，源文件已经找不到了。</p>
+<h3 id="有时候也很笨"><a href="#有时候也很笨" class="headerlink" title="有时候也很笨"></a>有时候也很笨</h3><p>因此，觉得这个东西不好用，<code>hexo d</code>只是部署生成的表态文件到 github，而不会把源文件也放到 github，这样如果我换电脑或者使用其它电脑时就很不方便，我还得再建一个 repo 去维护这个东西，所以决定尝试一下<code>jekyll</code></p>
+<h3 id="为什么放弃jekyll"><a href="#为什么放弃jekyll" class="headerlink" title="为什么放弃jekyll"></a>为什么放弃<code>jekyll</code></h3><p>首先我得说下我对静态博客工具的态度：</p>
+<ul>
+<li>不要很难上手，因为我不想在这上面花太多功夫</li>
+<li>可以与github pages集成</li>
+<li>支持主题，并且主题要很容易切换 （虽然博客的重点是内容而非表面，但是人都有爱美之心，并且容易喜新厌旧）</li>
+</ul>
+<p>我想<code>jekyll</code>与 github pages 是天然集成的，并且它还有无数非常美丽的主题，但是，它的主题切换就不像<code>hexo</code>那么的方便了，当然有可能是我没有搞清楚，但是， anyway，我不想在这上面花太多功夫，所以，决定回归<code>hexo</code>.</p>
+<h3 id="如何重回-hexo"><a href="#如何重回-hexo" class="headerlink" title="如何重回 hexo"></a>如何重回 <code>hexo</code></h3><h4 id="versoin-control你的源代码"><a href="#versoin-control你的源代码" class="headerlink" title="versoin control你的源代码"></a>versoin control你的源代码</h4><p>对于上面我说的<code>hexo</code>的源代码如何保存的问题，我现在的做法是这样的<br>建立一个新的分支<code>blog/hexo</code>， 这里面就放着从<code>hexo init</code>到后面各种修改的内容，但是下面这几个文件我觉得是没有必要提交的，所以，可以把它们加到<code>.gitignore</code>文件中</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.deploy_git/&#10;node_modules/&#10;public/&#10;themes/&#10;db.json</span><br></pre></td></tr></table></figure>
+<p>这里特别要注意的是<code>themes</code>，因为这下面放了你下载的主题，你是很有可能对这些主题进行自定义配置的，所以我的想法是创建一个相对应主题的配置文件，然后把<code>themes/bla-theme/bla.file</code> 链接到你新建的配置文件。（当然了，我还没来得及弄）</p>
+<h4 id="部署你的网站"><a href="#部署你的网站" class="headerlink" title="部署你的网站"></a>部署你的网站</h4><p><code>hexo</code>提供了<code>hexo-deployer-git</code>可以让你只用一句命令<code>hexo d</code>就可以将你的网站部署到 github pages 上, 具体请看<a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">官方文档</a></p>
+<p>在使用这个工具之前，你需要确保</p>
+<ol>
+<li><p>你已经配置了你的 git repo 信息到<code>_config.yml</code>中，示例如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deploy:&#10;  type: git&#10;  repo: git@github.com:kevinjom/kevinjom.github.io.git&#10;  branch: master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>先执行<code>hexo g</code></p>
+</li>
+</ol>
+<p>当然了，如果嫌麻烦，你可以写一个简单的脚本。下面是一个例子</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line"><span class="built_in">set</span> <span class="operator">-e</span></span><br><span class="line"></span><br><span class="line">PROG=$(basename <span class="variable">$0</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">usage</span></span>() &#123;</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">"<span class="variable">$PROG</span> &lt;commit message&gt;"</span></span><br><span class="line">  <span class="built_in">exit</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">[[ -n <span class="variable">$1</span> ]] || usage</span><br><span class="line"></span><br><span class="line">git stash</span><br><span class="line">git pull origin blog/hexo --rebase</span><br><span class="line">git stash pop || <span class="built_in">echo</span> <span class="string">"no stash to pop"</span></span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line"></span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h3 id="自定义域名过期了怎么办"><a href="#自定义域名过期了怎么办" class="headerlink" title="自定义域名过期了怎么办"></a>自定义域名过期了怎么办</h3><p>如果曾经配置过<code>CNAME</code>，但是域名过期了，又没有新域名使用，你想使用<code>bla.github.io</code>来访问，但你会发现 github还是会跳转至你曾经的域名，解决办法是将 <code>CNAME</code>的内容更新为<code>bla.github.io</code></p>
+
+      
+    </div>
+    
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ghpages/" rel="tag">#ghpages</a>
+          
+            <a href="/tags/github-pages/" rel="tag">#github pages</a>
+          
+            <a href="/tags/hexo/" rel="tag">#hexo</a>
+          
+            <a href="/tags/tutorial/" rel="tag">#tutorial</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2013/09/24/spring-aop-in-deep/" rel="next" title="Spring AOP 实现原理">
+                <i class="fa fa-chevron-left"></i> Spring AOP 实现原理
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="kevinjom" />
+          <p class="site-author-name" itemprop="name">kevinjom</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#曾经的故事"><span class="nav-number">1.</span> <span class="nav-text">曾经的故事</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有时候也很笨"><span class="nav-number">2.</span> <span class="nav-text">有时候也很笨</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么放弃jekyll"><span class="nav-number">3.</span> <span class="nav-text">为什么放弃jekyll</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何重回-hexo"><span class="nav-number">4.</span> <span class="nav-text">如何重回 hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#versoin-control你的源代码"><span class="nav-number">4.1.</span> <span class="nav-text">versoin control你的源代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#部署你的网站"><span class="nav-number">4.2.</span> <span class="nav-text">部署你的网站</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义域名过期了怎么办"><span class="nav-number">5.</span> <span class="nav-text">自定义域名过期了怎么办</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kevinjom</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
