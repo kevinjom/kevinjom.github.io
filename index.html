@@ -229,6 +229,143 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/12/effetive-ruby-tldr-part1/" itemprop="url">
+                  Effetive Ruby TLDR - part1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Posted on</span>
+            <time itemprop="dateCreated" datetime="2016-05-12T23:10:28+10:00" content="2016-05-12">
+              2016-05-12
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="“Accustoming-Yourself-to-Ruby”"><a href="#“Accustoming-Yourself-to-Ruby”" class="headerlink" title="“Accustoming Yourself to Ruby”"></a>“Accustoming Yourself to Ruby”</h2><h3 id="1-Understand-What-Ruby-Considers-To-Be-True"><a href="#1-Understand-What-Ruby-Considers-To-Be-True" class="headerlink" title="#1. Understand What Ruby Considers To Be True"></a>#1. Understand What Ruby Considers To Be True</h3><ul>
+<li>Every value is <code>true</code>expect <code>false</code> and <code>nil</code>.</li>
+<li>The number <code>0</code> is <code>ture</code> in Ruby.</li>
+<li>Check if a value is nil with <code>value#nil?</code>.</li>
+</ul>
+<h3 id="2-Treat-All-Objects-As-If-They-Could-Be-nil"><a href="#2-Treat-All-Objects-As-If-They-Could-Be-nil" class="headerlink" title="#2. Treat All Objects As If They Could Be nil"></a>#2. Treat All Objects As If They Could Be nil</h3><ul>
+<li>Only <code>nil.nil?</code> returns <code>true</code>.</li>
+<li>You can cast a nil to a empty string with <code>nil.to_s</code> or to a int with<br><code>nil.to_i</code>.</li>
+</ul>
+<h3 id="3-Avoid-Ruby’s-Cryptic-Perlisms"><a href="#3-Avoid-Ruby’s-Cryptic-Perlisms" class="headerlink" title="#3. Avoid Ruby’s Cryptic Perlisms"></a>#3. Avoid Ruby’s Cryptic Perlisms</h3><ul>
+<li>Prefer <code>String#match</code> to <code>str =~</code>.</li>
+<li>Don’t modify global variables unless you must do.</li>
+</ul>
+<h3 id="4-Be-Aware-That-Constants-Are-Mutable"><a href="#4-Be-Aware-That-Constants-Are-Mutable" class="headerlink" title="#4. Be Aware That Constants Are Mutable"></a>#4. Be Aware That Constants Are Mutable</h3><ul>
+<li>Always <code>freeze</code> constant values to prevent them to be mutated.</li>
+<li>To prevent assigning new values to existing constants, freeze the module they<br>are defined in.</li>
+</ul>
+<h3 id="5-Pay-attention-to-runtime-warnings"><a href="#5-Pay-attention-to-runtime-warnings" class="headerlink" title="#5. Pay attention to runtime warnings"></a>#5. Pay attention to runtime warnings</h3><ul>
+<li>Use the <code>-w</code> CLI option to enable compile and runtime warnings. Or make it<br>part of the <code>RUBYOPT</code> env variable.</li>
+</ul>
+<h2 id="Classes-Objects-and-Modules"><a href="#Classes-Objects-and-Modules" class="headerlink" title="Classes, Objects and Modules"></a>Classes, Objects and Modules</h2><h3 id="6-Know-how-ruby-build-inheritance-hierarchies"><a href="#6-Know-how-ruby-build-inheritance-hierarchies" class="headerlink" title="#6. Know how ruby build inheritance hierarchies"></a>#6. Know how ruby build inheritance hierarchies</h3><ul>
+<li>Method lookup algo - move right, then go up, that means when you clll a method<br><code>foo.bar</code>, you move to the right, find the class of the object <code>foo</code>, if you<br>find <code>bar</code> in <code>foo</code>‘s class, then invoke it, or move to <code>foo</code>‘s superclass, do<br>the same thing.</li>
+<li>If no method has been found, <code>method_missing</code> will be called with the same<br>algo as above.</li>
+<li>Module are classes too. Including modules silently creates singleton classes<br>which are inserted into the hierarchy above the including class.</li>
+<li>Class methods are just instance methods of the class’s metaclass</li>
+</ul>
+<h3 id="7-Be-Aware-of-the-Different-Behaviors-of-super"><a href="#7-Be-Aware-of-the-Different-Behaviors-of-super" class="headerlink" title="#7. Be Aware of the Different Behaviors of super"></a>#7. Be Aware of the Different Behaviors of super</h3><ul>
+<li>Use <code>super</code> to call the overridden method.</li>
+<li>Use <code>super</code> with no args and no parentheses is equivalent to passing it all of<br>the arguments which were given to the enclosing method.</li>
+<li>Use to <code>super()</code> to call overriden method withoug passing any arguments.</li>
+</ul>
+<h3 id="8-Invoke-super-When-Initializing-Sub-classes"><a href="#8-Invoke-super-When-Initializing-Sub-classes" class="headerlink" title="#8. Invoke super When Initializing Sub-classes"></a>#8. Invoke super When Initializing Sub-classes</h3><ul>
+<li>Ruby doesn’t automatically call the <code>initialize</code> method in the superclass when<br>creating objects from a subclass</li>
+<li>Call the overriden <code>initialize</code> method explicitly with <code>super</code></li>
+</ul>
+<h3 id="9-Be-Alert-for-Ruby’s-Most-Vexing-Parse"><a href="#9-Be-Alert-for-Ruby’s-Most-Vexing-Parse" class="headerlink" title="#9. Be Alert for Ruby’s Most Vexing Parse"></a>#9. Be Alert for Ruby’s Most Vexing Parse</h3><ul>
+<li>Setter method must have a reciever, inside the class that defines it, the<br>receiver should be <code>self</code></li>
+<li>Avoid using <code>self</code> when call other methods inside a class.</li>
+</ul>
+<h3 id="10-Prefer-Struct-to-Hash-for-Structured-Data"><a href="#10-Prefer-Struct-to-Hash-for-Structured-Data" class="headerlink" title="#10. Prefer Struct to Hash for Structured Data"></a>#10. Prefer Struct to Hash for Structured Data</h3><ul>
+<li>When dealing with structured data which doesn’t quite justify a new class<br>prefer using Struct to Hash.</li>
+<li>Assign the return value of Struct::new to a constant and treat that constant<br>like a class.</li>
+</ul>
+<h4 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h4><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="constant">User</span> = <span class="constant">Struct</span>.new(<span class="symbol">:name</span>, <span class="symbol">:age</span>) <span class="comment"># User.class = Class</span></span><br><span class="line">user = <span class="constant">User</span>.new(<span class="string">'kevin'</span>, <span class="number">18</span>)</span><br><span class="line">puts user.name</span><br><span class="line">user.age = <span class="number">22</span></span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/13/hexo-plus-ghpages/" itemprop="url">
                   Hexo + Github Pages = 你的博客
                 </a>
@@ -243,7 +380,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2016-04-13T23:28:37+08:00" content="2016-04-13">
+            <time itemprop="dateCreated" datetime="2016-04-13T23:28:37+10:00" content="2016-04-13">
               2016-04-13
             </time>
           </span>
@@ -360,7 +497,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2013-09-24T15:23:18+08:00" content="2013-09-24">
+            <time itemprop="dateCreated" datetime="2013-09-24T15:23:18+10:00" content="2013-09-24">
               2013-09-24
             </time>
           </span>
@@ -509,7 +646,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2013-09-13T21:33:33+08:00" content="2013-09-13">
+            <time itemprop="dateCreated" datetime="2013-09-13T21:33:33+10:00" content="2013-09-13">
               2013-09-13
             </time>
           </span>
@@ -626,7 +763,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">Posted on</span>
-            <time itemprop="dateCreated" datetime="2012-11-29T23:43:39+08:00" content="2012-11-29">
+            <time itemprop="dateCreated" datetime="2012-11-29T23:43:39+11:00" content="2012-11-29">
               2012-11-29
             </time>
           </span>
@@ -730,7 +867,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">posts</span>
             </a>
           </div>
@@ -740,7 +877,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
