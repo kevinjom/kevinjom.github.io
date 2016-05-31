@@ -2,21 +2,6 @@
 
 set -e
 
-PROG=$(basename $0)
-
-usage() {
-  echo "$PROG <commit message>"
-  exit 1
-}
-
-[[ -n $1 ]] || usage
-
-git stash
-git pull origin blog/hexo --rebase
-git stash pop || echo "no stash to pop"
-
-# process slides
-cd source/slides
 cleaver *.md
 
 layout_disabled(){
@@ -42,11 +27,4 @@ disable_layout(){
 for file in $(ls *.html); do
   disable_layout $file
 done
-
-git add .
-git commit -m "$1"
-git push origin blog/hexo
-
-hexo g
-hexo d
 
