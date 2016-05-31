@@ -1,0 +1,610 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="kevinjom, KevinFan, Java, Spring, Ruby" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="title: Spring IoC Containeauthor:  name: kevinjom  twitter: kevinjom  url: http://kevinjom.github.iotheme: jdan/cleaver-retrocontrols: falsestyle: style.cssoutput: spring-ioc-basic.html
+–
+Spring IoC C">
+<meta property="og:type" content="website">
+<meta property="og:title" content="KevinFan's BLOG">
+<meta property="og:url" content="http://kevinjom.github.io/slides/spring-ioc.html">
+<meta property="og:site_name" content="KevinFan's BLOG">
+<meta property="og:description" content="title: Spring IoC Containeauthor:  name: kevinjom  twitter: kevinjom  url: http://kevinjom.github.iotheme: jdan/cleaver-retrocontrols: falsestyle: style.cssoutput: spring-ioc-basic.html
+–
+Spring IoC C">
+<meta property="og:image" content="http://kevinjom.github.io/../images/ioc_case.jpg">
+<meta property="og:image" content="http://kevinjom.github.io/../images/container.jpg">
+<meta property="og:image" content="http://kevinjom.github.io/../images/lc.jpg">
+<meta property="og:image" content="http://kevinjom.github.io/../images/mvc.png">
+<meta property="og:image" content="http://kevinjom.github.io/../images/mvc2.jpg">
+<meta property="og:updated_time" content="2016-05-31T01:11:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KevinFan's BLOG">
+<meta name="twitter:description" content="title: Spring IoC Containeauthor:  name: kevinjom  twitter: kevinjom  url: http://kevinjom.github.iotheme: jdan/cleaver-retrocontrols: falsestyle: style.cssoutput: spring-ioc-basic.html
+–
+Spring IoC C">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title>
+  
+
+  
+     | KevinFan's BLOG
+  
+</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">KevinFan's BLOG</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I love freedom for no reason</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+      <p>title: Spring IoC Containe<br>author:<br>  name: kevinjom<br>  twitter: kevinjom<br>  url: <a href="http://kevinjom.github.io">http://kevinjom.github.io</a><br>theme: jdan/cleaver-retro<br>controls: false<br>style: style.css<br>output: spring-ioc-basic.html</p>
+<p>–</p>
+<h1 id="Spring-IoC-Container"><a href="#Spring-IoC-Container" class="headerlink" title="Spring IoC Container"></a>Spring IoC Container</h1><p>–</p>
+<h3 id="Case"><a href="#Case" class="headerlink" title="Case"></a>Case</h3><blockquote>
+<p>We want to build an application which acts like a social media facade, when you want to post a message to your social media account, you just post to this app, it will post the message to your social accounts.</p>
+</blockquote>
+<p>–</p>
+<h3 id="Case-1"><a href="#Case-1" class="headerlink" title="Case"></a>Case</h3><h4 id="Components"><a href="#Components" class="headerlink" title="Components"></a>Components</h4><p><img src="../images/ioc_case.jpg" alt="case"></p>
+<p>–</p>
+<h3 id="Case-2"><a href="#Case-2" class="headerlink" title="Case"></a>Case</h3><h4 id="Plain-Old-Java-way"><a href="#Plain-Old-Java-way" class="headerlink" title="Plain Old Java way"></a>Plain Old Java way</h4><p>(demo)</p>
+<p>–</p>
+<h3 id="What-is-IoC"><a href="#What-is-IoC" class="headerlink" title="What is IoC"></a>What is IoC</h3><h4 id="DI-vs-IoC"><a href="#DI-vs-IoC" class="headerlink" title="DI vs IoC"></a>DI vs IoC</h4><p>DI is a concret form of IoC</p>
+<p>–</p>
+<h3 id="Why-is-it"><a href="#Why-is-it" class="headerlink" title="Why is it"></a>Why is it</h3><ul>
+<li>flexibility<ul>
+<li>easy to change the implementation</li>
+</ul>
+</li>
+<li>readability<ul>
+<li>simpler code</li>
+</ul>
+</li>
+<li>testability<ul>
+<li>easy to test, because the dependencies are injected (created outside), so its easy to use stub or mocks.</li>
+</ul>
+</li>
+</ul>
+<p>–</p>
+<h3 id="How-in-Spring"><a href="#How-in-Spring" class="headerlink" title="How (in Spring)"></a>How (in Spring)</h3><p><img src="../images/container.jpg" alt="how"></p>
+<p>–</p>
+<h3 id="IoC-Containers"><a href="#IoC-Containers" class="headerlink" title="IoC Containers"></a>IoC Containers</h3><h4 id="A-colleciton-of-dependencies"><a href="#A-colleciton-of-dependencies" class="headerlink" title="A colleciton of dependencies"></a>A colleciton of dependencies</h4><ul>
+<li>register dependencies</li>
+<li>dependency injection</li>
+<li>get dependencies</li>
+</ul>
+<p>Spring provides</p>
+<ul>
+<li>BeanFactory</li>
+<li>ApplicationContext</li>
+</ul>
+<p>–</p>
+<h3 id="Congiuration-metadata"><a href="#Congiuration-metadata" class="headerlink" title="Congiuration metadata"></a>Congiuration metadata</h3><h4 id="configuration-metadata-represents-how-you-as-an-application-developer-tell-the-Spring-container-to-instantiate-configure-and-assemble-the-objects-in-your-application"><a href="#configuration-metadata-represents-how-you-as-an-application-developer-tell-the-Spring-container-to-instantiate-configure-and-assemble-the-objects-in-your-application" class="headerlink" title="configuration metadata represents how you as an application developer tell the Spring container to instantiate, configure, and assemble the objects in your application"></a>configuration metadata represents how you as an application developer tell the Spring container to instantiate, configure, and assemble the objects in your application</h4><p>Spring supports</p>
+<ul>
+<li>xml</li>
+<li>java configuration</li>
+</ul>
+<p>–</p>
+<h3 id="Instantiating-a-container"><a href="#Instantiating-a-container" class="headerlink" title="Instantiating a container"></a>Instantiating a container</h3><p>(demo code)</p>
+<p>–</p>
+<h3 id="Use-beans"><a href="#Use-beans" class="headerlink" title="Use beans"></a>Use beans</h3><p>(demo code)</p>
+<p>–</p>
+<h3 id="BeanFactory-or-ApplicationContext"><a href="#BeanFactory-or-ApplicationContext" class="headerlink" title="BeanFactory or ApplicationContext"></a>BeanFactory or ApplicationContext</h3><h4 id="ApplicationContext-please"><a href="#ApplicationContext-please" class="headerlink" title="ApplicationContext please"></a>ApplicationContext <em>please</em></h4><p><strong>ApplicationContext</strong> can do all the things <strong>BeanFactory</strong> does, and also:</p>
+<ul>
+<li>Automatic BeanPostProcessor registration</li>
+<li>Automatic BeanFactoryPostProcessor registration</li>
+<li>Convenient MessageSource access (for i18n)</li>
+<li>ApplicationEvent publication</li>
+</ul>
+<p>–</p>
+<h3 id="DefaultListableBeanFactory"><a href="#DefaultListableBeanFactory" class="headerlink" title="DefaultListableBeanFactory"></a>DefaultListableBeanFactory</h3><p>Currently,all the internal <strong>ApplicationContext</strong> use <strong>DefaultListableBeanFactory</strong> to as the bean container</p>
+<p>–</p>
+<h3 id="Instantiating-a-bean"><a href="#Instantiating-a-bean" class="headerlink" title="Instantiating a bean"></a>Instantiating a bean</h3><ul>
+<li>constructor</li>
+<li>static fm</li>
+<li>instance fm</li>
+<li>FactoryBean</li>
+</ul>
+<p>–</p>
+<h3 id="Constructor-Injection-vs-Setter-Inection"><a href="#Constructor-Injection-vs-Setter-Inection" class="headerlink" title="Constructor Injection vs Setter Inection"></a>Constructor Injection vs Setter Inection</h3><h4 id="follow-Mr-Jay-Constructor-Injection-please"><a href="#follow-Mr-Jay-Constructor-Injection-please" class="headerlink" title="follow Mr Jay, Constructor Injection please"></a>follow Mr Jay, Constructor Injection <em>please</em></h4><p>(demo code)</p>
+<p>–</p>
+<h3 id="Bean-Scope"><a href="#Bean-Scope" class="headerlink" title="Bean Scope"></a>Bean Scope</h3><ul>
+<li>singleton(default)</li>
+<li>prototype</li>
+<li>request</li>
+<li>session</li>
+<li>global-session</li>
+</ul>
+<p>–</p>
+<h3 id="Bean-Scope-1"><a href="#Bean-Scope-1" class="headerlink" title="Bean Scope"></a>Bean Scope</h3><blockquote>
+<p>You cannot dependency-inject a prototype-scoped bean into your singleton bean, because that injection occurs only once</p>
+</blockquote>
+<h4 id="method-injection"><a href="#method-injection" class="headerlink" title="method injection?"></a>method injection?</h4><p>–</p>
+<h3 id="Autowire"><a href="#Autowire" class="headerlink" title="Autowire"></a>Autowire</h3><blockquote>
+<p>The Spring container can autowire relationships between collaborating beans</p>
+</blockquote>
+<h4 id="Autowiring-modes"><a href="#Autowiring-modes" class="headerlink" title="Autowiring modes"></a>Autowiring modes</h4><ul>
+<li>no</li>
+<li>byType</li>
+<li>byName</li>
+<li>constructor</li>
+</ul>
+<p>–</p>
+<h3 id="Autowired"><a href="#Autowired" class="headerlink" title="@Autowired"></a>@Autowired</h3><ul>
+<li>autowiring by type</li>
+<li>indicate this dependent bean is required</li>
+<li>BeanFactory supports? maybe <em>NOT</em></li>
+</ul>
+<p>@Resource - by name</p>
+<p>–</p>
+<h3 id="Component-Scan"><a href="#Component-Scan" class="headerlink" title="Component Scan"></a>Component Scan</h3><h4 id="Instaed-of-configure-beans-by-yourself-let-spring-find-them-and-configure-them-for-you"><a href="#Instaed-of-configure-beans-by-yourself-let-spring-find-them-and-configure-them-for-you" class="headerlink" title="Instaed of configure beans by yourself, let spring find them and configure them for you"></a>Instaed of configure beans by yourself, let spring find them and configure them for you</h4><p>enable it by</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">context:component-scan</span> <span class="attribute">base-package</span>=<span class="value">"com.github.kevinjom"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>–</p>
+<h3 id="What-are-they-scanning"><a href="#What-are-they-scanning" class="headerlink" title="What are they scanning?"></a>What are they scanning?</h3><ul>
+<li>@Component</li>
+<li>@Service</li>
+<li>@Repositry</li>
+<li>@Controller</li>
+<li>@RestController</li>
+</ul>
+<p>–</p>
+<h3 id="Java-Configuration"><a href="#Java-Configuration" class="headerlink" title="Java Configuration"></a>Java Configuration</h3><ul>
+<li>@Configuration</li>
+<li>@Bean</li>
+<li>@Scope</li>
+<li>@ComponentScan</li>
+</ul>
+<p>–</p>
+<h3 id="Java-Configuration-1"><a href="#Java-Configuration-1" class="headerlink" title="Java Configuration"></a>Java Configuration</h3><p>(demo)</p>
+<p>–</p>
+<h3 id="Lifecycle"><a href="#Lifecycle" class="headerlink" title="Lifecycle"></a>Lifecycle</h3><p><img src="../images/lc.jpg" alt="lc"></p>
+<p>–</p>
+<h3 id="Lifecycle-1"><a href="#Lifecycle-1" class="headerlink" title="Lifecycle"></a>Lifecycle</h3><ul>
+<li>Bean lifecycle callbacks</li>
+<li>Aware interfaces</li>
+<li>Container extension points</li>
+</ul>
+<p>–</p>
+<h3 id="Bean-lifecycle-callbacks"><a href="#Bean-lifecycle-callbacks" class="headerlink" title="Bean lifecycle callbacks"></a>Bean lifecycle callbacks</h3><ul>
+<li>Init callbacks</li>
+<li>Desctruction callbacks</li>
+</ul>
+<p>–</p>
+<h3 id="Init-callbacks"><a href="#Init-callbacks" class="headerlink" title="Init callbacks"></a>Init callbacks</h3><ul>
+<li>PostConstruct</li>
+<li>InitializingBean</li>
+<li>custom init method</li>
+</ul>
+<p>–</p>
+<h3 id="Desctruction-callbacks"><a href="#Desctruction-callbacks" class="headerlink" title="Desctruction callbacks"></a>Desctruction callbacks</h3><ul>
+<li>PreDestory</li>
+<li>DisposableBean</li>
+<li>custom destroy method</li>
+</ul>
+<p>–</p>
+<h3 id="Aware-interfaces"><a href="#Aware-interfaces" class="headerlink" title="Aware interfaces"></a>Aware interfaces</h3><ul>
+<li>ApplicationContextAware</li>
+<li>ServletContextAware</li>
+</ul>
+<p>–</p>
+<h3 id="Container-extension-points"><a href="#Container-extension-points" class="headerlink" title="Container extension points"></a>Container extension points</h3><ul>
+<li>BeanPostProcessor</li>
+<li>BeanFactoryPostProcessor</li>
+</ul>
+<p>–</p>
+<h3 id="BeanPostProcessor"><a href="#BeanPostProcessor" class="headerlink" title="BeanPostProcessor"></a>BeanPostProcessor</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BeanPostProcessor</span> </span>&#123;</span><br><span class="line"><span class="function">Object <span class="title">postProcessBeforeInitialization</span><span class="params">(Object bean,</span><br><span class="line">		String beanName)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function">Object <span class="title">postProcessAfterInitialization</span><span class="params">(Object bean,</span><br><span class="line">		String beanName)</span></span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>–</p>
+<h3 id="ApplicationContextAwareProcessor"><a href="#ApplicationContextAwareProcessor" class="headerlink" title="ApplicationContextAwareProcessor"></a>ApplicationContextAwareProcessor</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ApplicationContextAwareProcessor</span></span><br><span class="line">  <span class="keyword">implements</span> <span class="title">BeanPostProcessor</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">postProcessBeforeInitialization</span><span class="params">(<span class="keyword">final</span> Object bean, String beanName)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">		AccessControlContext acc = <span class="keyword">null</span>;</span><br><span class="line">      <span class="comment">//...</span></span><br><span class="line">			invokeAwareInterfaces(bean);</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">		<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">invokeAwareInterfaces</span><span class="params">(Object bean)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (bean <span class="keyword">instanceof</span> Aware) &#123;</span><br><span class="line">			<span class="comment">//...</span></span><br><span class="line">			<span class="keyword">if</span> (bean <span class="keyword">instanceof</span> ApplicationContextAware) &#123;</span><br><span class="line">				((ApplicationContextAware) bean)</span><br><span class="line">				.setApplicationContext(<span class="keyword">this</span>.applicationContext);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>–</p>
+<h3 id="BeanFactoryPostProcessor"><a href="#BeanFactoryPostProcessor" class="headerlink" title="BeanFactoryPostProcessor"></a>BeanFactoryPostProcessor</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BeanFactoryPostProcessor</span> </span>&#123;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">postProcessBeanFactory</span><span class="params">(ConfigurableListableBeanFactory</span><br><span class="line">		beanFactory)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>–</p>
+<h3 id="WebApplicationContext"><a href="#WebApplicationContext" class="headerlink" title="WebApplicationContext"></a>WebApplicationContext</h3><h4 id="We-are-doing-WEB-things-YES"><a href="#We-are-doing-WEB-things-YES" class="headerlink" title="We are doing WEB things. YES!!!!"></a>We are doing WEB things. YES!!!!</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">WebApplicationContext</span> <span class="keyword">extends</span> <span class="title">ApplicationContext</span> </span>&#123;</span><br><span class="line"><span class="function">ServletContext <span class="title">getServletContext</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>–</p>
+<h3 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><h4 id="offical"><a href="#offical" class="headerlink" title="offical"></a>offical</h4><p><img src="../images/mvc.png" alt="mvc"></p>
+<p>–</p>
+<h3 id="Spring-MVC-1"><a href="#Spring-MVC-1" class="headerlink" title="Spring MVC"></a>Spring MVC</h3><h4 id="from-someone-I-dont-know-but-I-like-it"><a href="#from-someone-I-dont-know-but-I-like-it" class="headerlink" title="from someone I dont know but I like it"></a>from someone I dont know but I like it</h4><h2 id=""><a href="#" class="headerlink" title=""></a><img src="../images/mvc2.jpg" alt="mvc"></h2><h3 id="Spring-boot"><a href="#Spring-boot" class="headerlink" title="Spring boot"></a>Spring boot</h3><h4 id="Powered-by-Spring-MVC"><a href="#Powered-by-Spring-MVC" class="headerlink" title="Powered by Spring MVC"></a>Powered by Spring MVC</h4><blockquote>
+<p>you may have known <code>WebApplicationContext</code> and spring mvc, <strong>NOW</strong> lets</p>
+<h4 id="DIY-a-spring-boot-app"><a href="#DIY-a-spring-boot-app" class="headerlink" title="DIY a spring-boot app"></a>DIY a spring-boot app</h4><p>(demo)</p>
+</blockquote>
+<p>–</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><ul>
+<li>Spring has two types of IoC Containers</li>
+<li>We can config spring through XML and Java Config</li>
+<li>Use FactoryBean to instantiate a bean unless you cannot use constructor</li>
+<li>Constructor injection please</li>
+</ul>
+<p>–</p>
+<h3 id="Summary-1"><a href="#Summary-1" class="headerlink" title="Summary"></a>Summary</h3><ul>
+<li>Don’t dependency-inject a prototype-scoped bean into your singleton bean</li>
+<li>Use java config if you can, but don’t hate XML</li>
+<li>Use lifecycle callbacks unless you cannot do it easily through other solution</li>
+<li>Spring mvc is the woman behind spring-boot, love it and understand it</li>
+</ul>
+<p>–</p>
+<h1 id="Thank-you"><a href="#Thank-you" class="headerlink" title="Thank you"></a>Thank you</h1>
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/default_avatar.jpg"
+               alt="kevinjom" />
+          <p class="site-author-name" itemprop="name">kevinjom</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-name">posts</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">kevinjom</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="http://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
