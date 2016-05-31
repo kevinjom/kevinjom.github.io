@@ -16,6 +16,7 @@ git pull origin blog/hexo --rebase
 git stash pop || echo "no stash to pop"
 git add .
 git commit -m "$1"
+git push origin blog/hexo
 
 hexo g
 hexo d
